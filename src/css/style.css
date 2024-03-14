@@ -1,0 +1,814 @@
+@import './reset.css';
+@import url("https://fonts.googleapis.com/css2?family=Shanti&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+/*************
+ * All Pages *
+ *************/
+body {
+  color: #EDF2F4;
+  font-family: Shanti;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  height: 100vh;
+  width: 100vw;
+  background: #2B2D42;
+  background: radial-gradient(87.82% 71.17% at 61.43% 100%, #3F4266 0%, #2B2D42 100%);
+  overflow: hidden;
+}
+
+fieldset {
+  width: 26.5rem;
+  flex-shrink: 0;
+  border-radius: 62.4375rem;
+  background: #444;
+  padding-left: 0.3rem;
+  display: flex;
+  box-sizing: border-box;
+}
+fieldset input {
+  color: #EDF2F4;
+  font-size: 1.25rem;
+  padding: 0.6rem;
+  width: 100%;
+  height: 100%;
+  text-transform: capitalize;
+}
+fieldset button {
+  display: flex;
+  align-items: center;
+  margin-right: 0.3rem;
+  cursor: pointer;
+}
+fieldset .loading {
+  animation: load-animation 2s infinite;
+}
+@keyframes load-animation {
+  20% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+fieldset button:hover {
+  opacity: 0.8;
+}
+
+*::-webkit-scrollbar {
+  height: 0.2rem;
+  width: 0rem;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #8D99AE;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: #2B2D42;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Header */
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 4.7rem;
+  background-color: #202020;
+  color: #EDF2F4;
+  font-size: 1.6rem;
+  z-index: -1;
+}
+@media (max-width: 1200px) {
+  header #space {
+    display: none;
+  }
+}
+header nav {
+  z-index: 0;
+}
+header nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  gap: 1.6rem;
+  margin-left: 2rem;
+}
+header nav ul li {
+  list-style: none;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  cursor: pointer;
+}
+header nav ul li .tooltip {
+  position: absolute;
+  font-size: 1rem;
+  top: 5rem;
+  background-color: #202020;
+  color: #EDF2F4;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 0.7rem;
+  padding: 0.4rem;
+  visibility: hidden;
+}
+header nav ul li:hover .tooltip {
+  visibility: visible;
+}
+header nav #selected {
+  background-color: #EF233C;
+  position: absolute;
+  width: 4rem;
+  height: 4.7rem;
+  top: 0;
+  z-index: -2;
+  left: 1rem;
+  transition: 300ms ease-in-out;
+}
+header nav .dashboard-page {
+  left: 1rem !important;
+}
+header nav .activities-page {
+  left: 4.5rem !important;
+}
+header nav .weather-page {
+  left: 8.2rem !important;
+}
+header nav .extreme-weather-page {
+  left: 11.7rem !important;
+}
+header nav .pollution-page {
+  left: 15.4rem !important;
+}
+header #title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.2rem;
+}
+header #space {
+  width: 18rem;
+}
+
+/*************
+ * Dashboard *
+ *************/
+/* Background */
+#dashboard > svg, #activities > svg, .raining > svg, #extreme-weather > svg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  scale: 100%;
+  z-index: -10;
+}
+
+#dashboard {
+  display: flex;
+  width: 85vw;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: center;
+  margin-top: 5.75rem;
+  /* Weekly Forecast */
+}
+@media (max-width: 1600px) {
+  #dashboard {
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
+    gap: 4rem;
+  }
+}
+#dashboard #today-weather {
+  display: inherit;
+  width: 29.9375rem;
+  justify-content: space-between;
+  align-items: center;
+}
+#dashboard #today-weather #today-weather-text {
+  color: #EDF2F4;
+  width: 15.125rem;
+  height: 17.99563rem;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: first baseline;
+}
+#dashboard #today-weather #today-weather-text #title {
+  display: flex;
+  width: 15.125rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.375rem;
+}
+#dashboard #today-weather #today-weather-text #title h1 {
+  font-family: Shanti;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#dashboard #today-weather #today-weather-text #title p {
+  font-size: 1.5rem;
+  color: #8D99AE;
+}
+#dashboard #today-weather #today-weather-text #temperature {
+  font-family: Shanti;
+  font-size: 6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#dashboard #forecast {
+  display: flex;
+  width: 64.1875rem;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0.75;
+  color: #8D99AE;
+  margin-top: 2rem;
+}
+@media (max-width: 1600px) {
+  #dashboard #forecast {
+    border-radius: 2rem;
+    border: 1.4px solid rgba(255, 255, 255, 0.3);
+    background: radial-gradient(301.95% 171.74% at 50% 83.91%, rgba(17, 37, 72, 0.8) 0%, rgba(149, 164, 191, 0.56) 100%);
+    padding: 2rem;
+    flex-wrap: wrap;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    opacity: 1;
+  }
+}
+#dashboard .week-item {
+  display: flex;
+  width: 14.875rem;
+  justify-content: flex-end;
+  align-items: center;
+  flex-shrink: 0;
+}
+#dashboard .week-item .week-item-divider {
+  width: 0.125rem;
+  height: 5.6875rem;
+  position: absolute;
+  left: 0rem;
+  top: 0.8125rem;
+}
+#dashboard .week-item .week-item-content {
+  display: flex;
+  width: 12.75rem;
+  height: 7.6875rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+#dashboard .week-item .week-item-content svg {
+  width: 7.5rem;
+  height: 5.625rem;
+  flex-shrink: 0;
+}
+#dashboard .week-item .week-item-content .week-item-text {
+  display: flex;
+  width: 4.4375rem;
+  height: 6.0625rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: self-start;
+  text-align: left;
+  flex-shrink: 0;
+}
+#dashboard .week-item .week-item-content .week-item-text h3 {
+  width: 5.0625rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  color: #EDF2F4;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#dashboard .week-item .week-item-content .week-item-text p {
+  width: 4.125rem;
+  height: 3.25rem;
+  flex-shrink: 0;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/*****************
+ * Activity Page *
+ *****************/
+#activities {
+  margin-top: 6vh;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.1875rem;
+}
+#activities h1 {
+  color: #EDF2F4;
+  font-family: Shanti;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#activities #card-array {
+  display: flex;
+  flex-direction: row;
+  width: 85vw;
+  height: 15rem;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+@media (max-width: 1600px) {
+  #activities #card-array {
+    justify-content: flex-start;
+    gap: 1rem;
+    overflow-x: auto;
+  }
+}
+#activities .unavailable {
+  opacity: 0.5;
+}
+#activities .card {
+  min-width: 150px;
+  border-radius: 1.9375rem;
+  background: radial-gradient(133.48% 141.42% at 100% 100%, rgba(88, 103, 129, 0.8) 0%, rgba(141, 153, 174, 0.48) 100%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 10vw;
+  height: 15rem;
+}
+#activities .card .card-content {
+  margin-top: 2.44rem;
+  display: flex;
+  width: 9.1875rem;
+  height: 10.1875rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+#activities .card .card-content h3 {
+  color: #EDF2F4;
+  text-align: center;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#activities .card .card-content .rating {
+  display: flex;
+  height: 2.75rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+#activities .card .card-content .rating .bar {
+  width: 7.6vw;
+  height: 0.625rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+}
+#activities .card .card-content .rating p {
+  text-align: center;
+  font-family: Shanti;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#activities .card .card-content .rating-ideal .bar {
+  background: #49D3FF;
+}
+#activities .card .card-content .rating-ideal p {
+  color: #49D3FF;
+}
+#activities .card .card-content .rating-poor .bar {
+  background: #FFBF00;
+}
+#activities .card .card-content .rating-poor p {
+  color: #FFBF00;
+}
+#activities .card .card-content .rating-warning .bar {
+  background: #A61C1C;
+}
+#activities .card .card-content .rating-warning p {
+  color: #A61C1C;
+}
+#activities .card:not(.card:has(.rating-unavailable)):hover {
+  transform: translateY(-5px) scale(1.005) translateZ(0);
+  box-shadow: 0px 9px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: background-color 500ms linear;
+}
+#activities .card:not(.card:has(.rating-unavailable)):active {
+  transform: scale(1) translateZ(0);
+}
+#activities .card:not(.card:has(.rating-unavailable)) {
+  cursor: pointer;
+}
+#activities #weekly-activities {
+  width: 85vw;
+  height: 22.375rem;
+  flex-shrink: 0;
+  border-radius: 2rem;
+  border: 1.4px solid rgba(255, 255, 255, 0.3);
+  background: radial-gradient(301.95% 171.74% at 50% 83.91%, rgba(17, 37, 72, 0.8) 0%, rgba(149, 164, 191, 0.56) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#activities #weekly-activities #weekly-activity-content {
+  display: inline-flex;
+  height: 15.8125rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-shrink: 0;
+  margin-top: 2.69rem;
+  width: 80vw;
+  overflow-x: auto;
+}
+#activities #weekly-activities #weekly-activity-content h2 {
+  color: #EDF2F4;
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#activities #weekly-activities #weekly-activity-content #activity-forecast {
+  display: flex !important;
+  width: 91.75rem;
+  height: 10.8125rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+#activities #weekly-activities #weekly-activity-content #activity-forecast .week-item {
+  display: flex !important;
+  width: 18.0625rem;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+#activities #weekly-activities #weekly-activity-content #activity-forecast .week-item .v-div {
+  width: 0.125rem;
+  height: 8.875rem;
+  background: #EDF2F4;
+}
+#activities #weekly-activities #weekly-activity-content #activity-forecast .week-item .week-item-content .week-weather {
+  display: flex;
+  height: 7.6875rem;
+  justify-content: baseline;
+  gap: 1rem;
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+}
+#activities #weekly-activities #weekly-activity-content #activity-forecast .week-item .week-item-content .week-weather .week-weather-text {
+  display: inherit;
+  height: 7.6875rem;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+#activities #weekly-activities #weekly-activity-content #activity-forecast .week-item .week-item-content .week-weather .week-weather-text h1 {
+  color: #EDF2F4;
+  font-family: Shanti;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#activities #weekly-activities #weekly-activity-content #activity-forecast .week-item .week-item-content .week-weather .week-weather-text p {
+  color: #EDF2F4;
+  font-family: Shanti;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#activities #weekly-activities #weekly-activity-content #activity-forecast .week-item .week-item-content .week-activity-icons {
+  display: flex;
+  width: 14.6875rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+#activities #weekly-activities #weekly-activity-content #activity-forecast .week-item .week-item-content .week-activity-icons .icon-holder {
+  height: 32px;
+}
+#activities #weekly-activities #weekly-activity-content #activity-forecast .week-item .week-item-content .week-activity-icons .tooltip {
+  position: absolute;
+  font-size: 1rem;
+  bottom: 4rem;
+  background-color: #202020;
+  color: #EDF2F4;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 0.7rem;
+  padding: 0.4rem;
+  visibility: hidden;
+}
+#activities #weekly-activities #weekly-activity-content #activity-forecast .week-item .week-item-content .week-activity-icons:hover .tooltip {
+  visibility: visible;
+}
+
+/*******************
+ * Extreme Weather *
+ *******************/
+#extreme-weather {
+  margin-top: 6vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.1875rem;
+}
+#extreme-weather h1 {
+  color: #EDF2F4;
+  font-family: Shanti;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#extreme-weather #extreme-content {
+  display: inline-flex;
+  flex-direction: row;
+}
+#extreme-weather #extreme-details {
+  display: inline-flex;
+}
+#extreme-weather .extreme-card {
+  border-radius: 1.9375rem;
+  border: 1px solid #d5181d;
+  background-color: #d5181d;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 15vw;
+  height: 18rem;
+}
+#extreme-weather .extreme-card .extreme-card-content {
+  margin-top: 2.44rem;
+  display: flex;
+  width: 15rem;
+  height: 15rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+#extreme-weather .extreme-card .extreme-card-content h3 {
+  color: black;
+  text-align: end;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/**************
+ * Mobile CSS *
+ **************/
+#mobile {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+}
+#mobile > svg {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  z-index: -10;
+}
+#mobile footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  border-radius: 32px 32px 0 0;
+  border: 1.4px solid rgba(255, 255, 255, 0.3);
+  background: radial-gradient(301.95% 171.74% at 50% 83.91%, rgba(17, 37, 72, 0.8) 0%, rgba(149, 164, 191, 0.6) 100%);
+  height: 115px;
+  flex-shrink: 0;
+}
+#mobile footer svg {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  margin-bottom: 90px;
+  stroke-width: 6px;
+  stroke: #07FFFF;
+  z-index: -10;
+}
+#mobile .content {
+  display: flex;
+  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding-top: 1rem;
+}
+#mobile .content .content-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#mobile .content .content-text h1 {
+  color: #EDF2F4;
+  text-align: center;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#mobile .content .content-text h2 {
+  color: #EDF2F4;
+  text-align: center;
+  font-family: Ubuntu;
+  font-size: 7.625rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: -1.14375rem;
+}
+#mobile .content svg {
+  position: relative;
+  width: 11.4375rem;
+  height: 7.5625rem;
+}
+#mobile .content .content-subtext {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#mobile .content .content-subtext h3 {
+  color: #8D99AE;
+  text-align: center;
+  /* Paragraph */
+  font-family: Shanti;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#mobile .content .content-subtext p {
+  color: #EDF2F4;
+  text-align: center;
+  /* Paragraph */
+  font-family: Shanti;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#mobile .content .card-array {
+  width: 100vw;
+  height: 11rem;
+  flex-shrink: 0;
+  border: 1.4px solid rgba(200, 176, 176, 0.3);
+  background: radial-gradient(301.95% 171.74% at 50% 83.91%, rgba(17, 37, 72, 0.4) 0%, rgba(149, 164, 191, 0.3) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem;
+}
+#mobile .content .card-array .card-content {
+  width: 6.1875rem;
+  height: 7.6875rem;
+  flex-shrink: 0;
+  border-radius: 1.9375rem;
+  background: radial-gradient(133.48% 141.42% at 100% 100%, rgba(141, 153, 174, 0.8) 0%, rgba(141, 153, 174, 0.48) 100%);
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 1rem;
+}
+#mobile .content .card-array .card-content svg {
+  width: 4rem;
+}
+#mobile .content .card-array .card-content .rating {
+  display: flex;
+  height: 2.75rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+#mobile .content .card-array .card-content .rating .bar {
+  width: 10vw;
+  height: 0.3rem;
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+}
+#mobile .content .card-array .card-content .rating p {
+  text-align: center;
+  font-family: Shanti;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#mobile .content .card-array .card-content .rating-ideal .bar {
+  background: #49D3FF;
+}
+#mobile .content .card-array .card-content .rating-ideal p {
+  color: #49D3FF;
+}
+#mobile .content .card-array .card-content .rating-poor .bar {
+  background: #FFBF00;
+}
+#mobile .content .card-array .card-content .rating-poor p {
+  color: #FFBF00;
+}
+#mobile .content .card-array .card-content .rating-warning .bar {
+  background: #A61C1C;
+}
+#mobile .content .card-array .card-content .rating-warning p {
+  color: #A61C1C;
+}
+#mobile fieldset {
+  width: 80vw;
+  flex-shrink: 0;
+  border-radius: 62.4375rem;
+  background: #444;
+  padding-left: 0.3rem;
+  display: flex;
+  box-sizing: border-box;
+}
+#mobile fieldset input {
+  color: #EDF2F4;
+  font-size: 1.25rem;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  text-transform: capitalize;
+}
+#mobile fieldset button {
+  display: flex;
+  align-items: center;
+  margin-right: 0.3rem;
+  cursor: pointer;
+  width: 4rem;
+}
+#mobile fieldset .loading {
+  animation: load-animation 2s infinite;
+}
+@keyframes load-animation {
+  20% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+#mobile fieldset button:hover {
+  opacity: 0.8;
+}/*# sourceMappingURL=style.css.map */

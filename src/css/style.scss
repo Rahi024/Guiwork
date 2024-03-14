@@ -1,0 +1,920 @@
+@import './reset.css';
+@import url('https://fonts.googleapis.com/css2?family=Shanti&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+$header: #202020;
+$text:  #EDF2F4;
+$background: #2B2D42;
+$primary: #EF233C;
+$foreground: #8D99AE;
+$info: #49D3FF;
+$poor: #FFBF00;
+$warning: #A61C1C;
+$extreme: #d5181d;
+
+/*************
+ * All Pages *
+ *************/
+
+body {
+    color: $text;
+    font-family: Shanti;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    height: 100vh;
+    width: 100vw;
+    background: $background;
+    background: radial-gradient(87.82% 71.17% at 61.43% 100%, #3F4266 0%, #2B2D42 100%);
+    overflow: hidden;
+}
+
+// Form
+fieldset {
+    width: 26.5rem;
+    flex-shrink: 0;
+    border-radius: 62.4375rem;
+    background: #444;
+    padding-left: 0.3rem;
+    display: flex;
+    box-sizing: border-box;
+
+    input {
+        color: $text;
+        font-size: 1.25rem;
+        padding: 0.6rem;
+        width: 100%;
+        height: 100%;
+        text-transform: capitalize;
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        margin-right: 0.3rem;
+        cursor: pointer;
+    }
+
+    .loading {
+        animation: load-animation 2s infinite;
+    }
+
+    @keyframes load-animation {
+        20% {
+            transform: scale(0.9);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.1);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+}
+
+ //Whole Scrollbar
+ *::-webkit-scrollbar {
+    height: 0.2rem;
+    width: 0rem;
+}
+
+// Inside Scrollbar
+*::-webkit-scrollbar-thumb {
+    background-color: $foreground;
+}
+
+// Scrollbar Background
+*::-webkit-scrollbar-track {
+    background-color: $background;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Header */
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 4.7rem;
+    background-color: $header;
+    color: $text;
+    font-size: 1.6rem;
+    z-index: -1;
+
+    @media (max-width:1200px) {        
+        #space {
+            display: none;
+        }
+    }
+
+    nav {
+        z-index: 0;
+        ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            display: flex;
+            gap: 1.6rem;
+            margin-left: 2rem;
+
+            li {
+                list-style: none;
+                display: flex;
+                align-self: center;
+                justify-content: center;
+                cursor: pointer; 
+            
+                .tooltip {
+                    position: absolute;
+                    font-size: 1rem;
+                    top: 5rem;
+                    background-color: $header;
+                    color: $text;
+                    text-align: center;
+                    padding: 5px 0;
+                    border-radius: 0.7rem;
+                    padding: 0.4rem;
+                    visibility: hidden;                   
+                }
+            }   
+            li:hover .tooltip {
+                visibility: visible;
+            }
+        }
+
+        #selected {
+            background-color: $primary;
+            position: absolute;
+            width: 4rem;
+            height: 4.7rem;
+            top: 0;
+            z-index: -2;
+            left: 1rem;  
+            transition: 300ms ease-in-out;         
+        }
+
+        .dashboard-page {
+            left: 1rem !important;
+        }
+
+        .activities-page {
+            left: 4.5rem !important;
+        }
+
+        .weather-page {
+            left: 8.2rem !important;
+        }
+
+        .extreme-weather-page {
+            left: 11.7rem !important;
+        }
+
+        .pollution-page {
+            left: 15.4rem !important;
+        }
+
+        
+    }    
+
+    #title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.2rem;
+    }
+
+    #space {
+        width: 18rem;
+    }
+}
+
+/*************
+ * Dashboard *
+ *************/
+
+/* Background */
+
+ #dashboard > svg, #activities > svg, .raining > svg, #extreme-weather > svg {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    scale: 100%;
+    z-index: -10;
+}
+
+#dashboard {
+
+    display: flex;
+    width: 85vw;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: center;
+    margin-top: 5.75rem;
+
+    @media (max-width:1600px)   {
+        flex-direction: column;
+        align-items: center;
+        justify-content: baseline;
+        gap: 4rem;
+    }
+
+    #today-weather {
+
+        display: inherit;
+        width: 29.9375rem;
+        justify-content: space-between;
+        align-items: center;
+        
+        #today-weather-text {
+            color: $text;
+            width: 15.125rem;
+            height: 17.99563rem;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: first baseline;
+
+            #title {
+                display: flex;
+                width: 15.125rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.375rem;
+        
+                h1 {
+                    font-family: Shanti;
+                    font-size: 3rem;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+            
+                }
+            
+                p {
+                    font-size: 1.5rem;
+                    color: $foreground;
+                }
+            }
+        
+            #temperature {
+                font-family: Shanti;
+                font-size: 6rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+        }
+    }
+
+    /* Weekly Forecast */
+    #forecast {
+        display: flex;
+        width: 64.1875rem;
+        justify-content: space-between;
+        align-items: center;
+        opacity: 0.75;
+        color: $foreground;
+        margin-top: 2rem;       
+        
+        @media (max-width:1600px)   {
+            border-radius: 2rem;
+            border: 1.4px solid rgba(255, 255, 255, 0.30);
+            background: radial-gradient(301.95% 171.74% at 50% 83.91%, rgba(17, 37, 72, 0.80) 0%, rgba(149, 164, 191, 0.56) 100%);
+            padding: 2rem;
+            flex-wrap: wrap;
+            max-width: fit-content;
+            opacity: 1;
+        }
+    }
+
+    .week-item {
+        display: flex;
+        width: 14.875rem;
+        justify-content: flex-end;
+        align-items: center;
+        flex-shrink: 0;
+
+        .week-item-divider {
+            width: 0.125rem;
+            height: 5.6875rem;
+
+            position: absolute;
+            left: 0rem;
+            top: 0.8125rem;
+        }
+
+        .week-item-content {
+            display: flex;
+            width: 12.75rem;
+            height: 7.6875rem;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+
+            svg {
+                width: 7.5rem;
+                height: 5.625rem;
+                flex-shrink: 0;
+            
+            }
+
+            .week-item-text {
+                display: flex;
+                width: 4.4375rem;
+                height: 6.0625rem;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: self-start;
+                text-align: left;
+                flex-shrink: 0;
+
+                h3 {
+                    width: 5.0625rem;
+                    height: 2.75rem;
+                    flex-shrink: 0;
+
+                    color: $text;
+                    font-size: 2rem;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                }
+
+                p {
+                    width: 4.125rem;
+                    height: 3.25rem;
+                    flex-shrink: 0;
+
+                    font-size: 1rem;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                }
+            }
+        }
+    }
+}
+
+/*****************
+ * Activity Page *
+ *****************/
+
+ #activities {
+    margin-top: 6vh;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3.1875rem;
+
+    h1 {
+        color: $text;
+        font-family: Shanti;
+        font-size: 3rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #card-array {
+        display: flex;
+        flex-direction: row;
+        width: 85vw;
+        height: 15rem;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        @media (max-width:1600px) {
+            justify-content: flex-start;
+            gap: 1rem;
+            overflow-x: auto;
+        }      
+    }
+
+    .unavailable {
+        opacity: 0.5;
+    }
+
+     .card {
+        min-width: 150px;
+        border-radius: 1.9375rem;
+        background: radial-gradient(133.48% 141.42% at 100% 100%, rgba(88, 103, 129, 0.80) 0%, rgba(141, 153, 174, 0.48) 100%);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 10vw;
+        height: 15rem;
+
+        .card-content {
+            margin-top: 2.44rem;
+            display: flex;
+            width: 9.1875rem;
+            height: 10.1875rem;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+
+            h3 {
+                color: $text;
+                text-align: center;
+                font-size: 1.5rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+
+            .rating {
+                display: flex;
+                height: 2.75rem;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                flex-shrink: 0;
+
+                .bar {
+                    width: 7.6vw;
+                    height: 0.625rem;
+                    flex-shrink: 0;
+                    border-radius: 0.5rem;
+                }
+
+                p {
+                    text-align: center;
+                    font-family: Shanti;
+                    font-size: 1.25rem;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                }             
+            }
+            .rating-ideal {
+                .bar {background: $info;}
+                p {color: $info;}
+            }
+            .rating-poor {
+                .bar {background: $poor;}
+                p {color: $poor;}
+            }
+            .rating-warning {
+                .bar {background: $warning;}
+                p {color: $warning;}
+            }
+        }      
+     }
+    
+     .card:not(.card:has(.rating-unavailable)):hover {
+        transform: translateY(-5px) scale(1.005) translateZ(0);
+        box-shadow: 0px 9px 4px 0px rgba(0, 0, 0, 0.25);
+        transition: background-color 500ms linear;
+      }
+
+      .card:not(.card:has(.rating-unavailable)):active {
+        transform: scale(1) translateZ(0);
+      }
+
+      .card:not(.card:has(.rating-unavailable)) {
+          cursor: pointer;
+      }
+
+     #weekly-activities {
+        width: 85vw;
+        height: 22.375rem;
+        flex-shrink: 0;
+        border-radius: 2rem;
+        border: 1.4px solid rgba(255, 255, 255, 0.30);
+        background: radial-gradient(301.95% 171.74% at 50% 83.91%, rgba(17, 37, 72, 0.80) 0%, rgba(149, 164, 191, 0.56) 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        #weekly-activity-content {
+            display: inline-flex;
+            height: 15.8125rem;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-shrink: 0;
+            margin-top: 2.69rem;
+            width: 80vw;
+
+            h2 {
+                color: $text;
+                font-size: 2.25rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+
+            overflow-x: auto;
+
+            #activity-forecast {
+                display: flex !important;
+                width: 91.75rem;
+                height: 10.8125rem;
+                justify-content: space-between;
+                align-items: center;
+                flex-shrink: 0;
+
+                .week-item {
+                    display: flex !important;
+                    width: 18.0625rem;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    gap: 2rem;
+                    align-items: center;
+                    flex-shrink: 0;
+
+                    .v-div {
+                        width: 0.125rem;
+                        height: 8.875rem;
+                        background: $text;
+                    }
+
+                    .week-item-content {
+                        .week-weather {
+                            display: flex;
+                            height: 7.6875rem;
+                            justify-content: baseline;
+                            gap: 1rem;
+                            flex-direction: row;
+                            align-items: center;
+                            flex-shrink: 0;
+    
+                            .week-weather-text {
+                                display: inherit;
+                                height: 7.6875rem;
+                                justify-content: center;
+                                align-items: flex-start;
+                                flex-direction: column;
+                                flex-shrink: 0;
+    
+                                h1 {
+                                    color: $text;
+                                    font-family: Shanti;
+                                    font-size: 2rem;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                }
+    
+                                p {
+                                    color: $text;
+                                    font-family: Shanti;
+                                    font-size: 1rem;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                                }
+    
+                            }
+    
+                        }
+
+                        .week-activity-icons {
+                            display: flex;
+                            width: 14.6875rem;
+                            justify-content: flex-start;
+                            align-items: center;
+
+                            .icon-holder {
+                                height: 32px;
+                            }
+                            .tooltip {
+                                position: absolute;
+                                font-size: 1rem;
+                                bottom: 4rem;
+                                background-color: $header;
+                                color: $text;
+                                text-align: center;
+                                padding: 5px 0;
+                                border-radius: 0.7rem;
+                                padding: 0.4rem;
+                                visibility: hidden;                   
+                            }
+                        }
+                        .week-activity-icons:hover .tooltip {
+                            visibility: visible;
+                        }
+                    }                   
+                }
+            }
+        }
+     }
+ }
+
+/*******************
+ * Extreme Weather *
+ *******************/
+#extreme-weather {
+    margin-top: 6vh;
+    display: flex;
+    flex-direction:column;
+    align-items: flex-start;
+    gap: 3.1875rem;
+
+    h1{
+        color: $text;
+        font-family: Shanti;
+        font-size: 3rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    #extreme-content{
+        display: inline-flex;
+        flex-direction: row;
+    }
+
+    #extreme-details {
+        display: inline-flex;
+    }
+
+    .extreme-card{
+        border-radius: 1.9375rem;
+        border: 1px solid $extreme;
+        background-color: $extreme;
+        // background: radial-gradient(133.48% 141.42% at 100% 100%, rgba(88, 103, 129, 0.80) 0%, rgba(141, 153, 174, 0.48) 100%);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 15vw;
+        height: 18rem;
+
+        .extreme-card-content {
+            margin-top: 2.44rem;
+            display: flex;
+            width: 15rem;
+            height: 15rem;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+
+            h3 {
+                color: black;
+                text-align:end;
+                font-size: 1.6rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+        }
+    }   
+}
+/**************
+ * Mobile CSS *
+ **************/
+
+ #mobile {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2rem;
+
+   > svg {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100vw;  
+        z-index: -10;       
+    }
+    
+    footer {
+       position: fixed;
+       bottom: 0;
+       width: 100vw;    
+       border-radius: 32px 32px 0 0;
+       border: 1.4px solid rgba(255, 255, 255, 0.30);
+       background: radial-gradient(301.95% 171.74% at 50% 83.91%, rgba(17, 37, 72, 0.80) 0%, rgba(149, 164, 191, 0.60) 100%);
+       height: 115px;
+       flex-shrink: 0;
+
+       svg {
+           position: fixed;
+           bottom: 0;
+           right: 0;
+           width: 100vw; 
+           margin-bottom: 90px;
+           stroke-width: 6px;
+           stroke: #07FFFF;
+           z-index: -10;
+       }
+    }
+
+    .content {
+       display: flex;
+       width: 100vw;
+       flex-direction: column;
+       align-items: center;
+       gap: 24px;
+       padding-top: 1rem;
+
+       .content-text {
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+
+           h1 {
+               color: $text;
+               text-align: center;
+               font-size: 3rem;
+               font-style: normal;
+               font-weight: 400;
+               line-height: normal;
+           }
+
+           h2 {
+               color: $text;
+               text-align: center;
+               font-family: Ubuntu;
+               font-size: 7.625rem;
+               font-style: normal;
+               font-weight: 300;
+               line-height: normal;
+               letter-spacing: -1.14375rem;
+           }
+       }
+
+       svg {
+           position: relative;
+           width: 11.4375rem;
+           height: 7.5625rem;
+       }
+
+       .content-subtext {
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+
+           h3 {
+               color: $foreground;
+               text-align: center;
+               /* Paragraph */
+               font-family: Shanti;
+               font-size: 1.5rem;
+               font-style: normal;
+               font-weight: 400;
+               line-height: normal;
+           }
+
+           p {
+               color: $text;
+               text-align: center;
+               /* Paragraph */
+               font-family: Shanti;
+               font-size: 1.5rem;
+               font-style: normal;
+               font-weight: 400;
+               line-height: normal;
+           }
+       }
+
+       .card-array {
+           width: 100vw;
+           height: 11rem;
+           flex-shrink: 0;
+           border: 1.4px solid rgba(200, 176, 176, 0.30);
+           background: radial-gradient(301.95% 171.74% at 50% 83.91%, rgba(17, 37, 72, 0.40) 0%, rgba(149, 164, 191, 0.30) 100%);
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           gap: 1rem;
+           overflow-x: auto;
+           padding: 1rem;
+           
+           .card-content {
+               width: 6.1875rem;
+               height: 7.6875rem;
+               flex-shrink: 0;
+               border-radius: 1.9375rem;
+               background: radial-gradient(133.48% 141.42% at 100% 100%, rgba(141, 153, 174, 0.80) 0%, rgba(141, 153, 174, 0.48) 100%);
+               display: inline-flex;
+               flex-direction: column;
+               justify-content: space-between;
+               align-items: center;
+               flex-shrink: 0;
+               padding: 1rem;
+
+               svg {
+                   width: 4rem;
+               }
+
+               .rating {
+               display: flex;
+               height: 2.75rem;
+               flex-direction: column;
+               justify-content: space-between;
+               align-items: center;
+               flex-shrink: 0;
+
+               .bar {
+                   width: 10vw;
+                   height: 0.3rem;
+                   margin-top: 0.6rem;
+                   flex-shrink: 0;
+                   border-radius: 0.5rem;
+               }
+
+               p {
+                   text-align: center;
+                   font-family: Shanti;
+                   font-size: 1.25rem;
+                   font-style: normal;
+                   font-weight: 400;
+                   line-height: normal;
+               }             
+           }
+
+               .rating-ideal {
+                   .bar {background: $info;}
+                   p {color: $info;}
+               }
+               .rating-poor {
+                   .bar {background: $poor;}
+                   p {color: $poor;}
+               }
+               .rating-warning {
+                   .bar {background: $warning;}
+                   p {color: $warning;}
+               }           
+           }
+       }
+    }
+
+    fieldset {
+       width: 80vw;
+       flex-shrink: 0;
+       border-radius: 62.4375rem;
+       background: #444;
+       padding-left: 0.3rem;  
+       display: flex;
+       box-sizing: border-box;
+   
+       input {
+           color: $text;
+           font-size: 1.25rem;
+           padding: 1rem;
+           width: 100%;
+           height: 100%;
+           text-transform: capitalize;
+       }
+   
+       button {
+           display: flex;
+           align-items: center;
+           margin-right: 0.3rem;
+           cursor: pointer;
+           width: 4rem;
+       }
+   
+       .loading {
+           animation: load-animation 2s infinite;
+       }
+   
+       @keyframes load-animation {
+           20% {
+               transform: scale(0.9);
+               opacity: 1;
+           }
+           50% {
+               transform: scale(1.1);
+               opacity: 0.5;
+           }
+           100% {
+               transform: scale(1);
+               opacity: 1;
+           }
+       }
+   
+       button:hover {
+           opacity: 0.8;
+       }
+   
+   }
+}
